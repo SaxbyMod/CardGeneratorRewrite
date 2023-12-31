@@ -139,7 +139,3 @@ This script is designed to be adaptable to different card game scenarios. You ca
   - Keep your README.md file up-to-date with any modifications you make, providing clear instructions for others who may use or contribute to the script.
 
 Remember to thoroughly test any modifications to ensure the script functions as expected in your specific context.
-
-## Additional Information
-
-- Include any other relevant information, known issues, or potential improvements.
