@@ -1,0 +1,6 @@
+C:\Users\Thinc\source\repos\CardGeneratorRewrite\CardGeneratorRewrite\bin\Release\CardGeneratorRewrite.exe
+C:\Users\Thinc\source\repos\CardGeneratorRewrite\CardGeneratorRewrite\bin\Release\CardGeneratorRewrite.pdb
+C:\Users\Thinc\source\repos\CardGeneratorRewrite\CardGeneratorRewrite\obj\Release\CardGeneratorRewrite.csproj.AssemblyReference.cache
+C:\Users\Thinc\source\repos\CardGeneratorRewrite\CardGeneratorRewrite\obj\Release\CardGeneratorRewrite.csproj.CoreCompileInputs.cache
+C:\Users\Thinc\source\repos\CardGeneratorRewrite\CardGeneratorRewrite\obj\Release\CardGeneratorRewrite.exe
+C:\Users\Thinc\source\repos\CardGeneratorRewrite\CardGeneratorRewrite\obj\Release\CardGeneratorRewrite.pdb
