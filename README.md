@@ -143,5 +143,3 @@ Remember to thoroughly test any modifications to ensure the script functions as 
 ## Additional Information
 
 - Include any other relevant information, known issues, or potential improvements.
-
-**Note:** Ensure to replace placeholder information with actual details specific to your use case.
