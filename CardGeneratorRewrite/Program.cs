@@ -165,7 +165,7 @@ class Program
 
             case "leg":
             case "legendary":
-                weight = 2;
+                weight = 1;
                 break;
 
             default:
