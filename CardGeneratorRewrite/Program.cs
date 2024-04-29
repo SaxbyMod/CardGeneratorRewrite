@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
+using CsvHelper;
+using CsvHelper.Configuration.Attributes;
 
 class Program
 {
@@ -21,10 +26,14 @@ class Program
 
         Console.WriteLine($"Generating CDF files for cards in: {assetsDir}");
 
+        // Read internal CSV data and convert it to CardRecord objects
+        var records = ReadCardsFromCsv("cards.csv");
+
         // Generate CDFs
-        foreach (string filename in Directory.GetFiles(assetsDir, "*.png"))
+        foreach (var record in records)
         {
-            GenerateCdfFile(filename, editionId);
+            string cardImagePath = Path.Combine(assetsDir, $"{record.Filename}.png");
+            GenerateCdfFile(cardImagePath, editionId, record);
         }
 
         // Inform the user that CDF files have been generated
@@ -34,42 +43,36 @@ class Program
         Console.ReadLine();
     }
 
-    static void GenerateCdfFile(string cardImagePath, string editionId)
+    static void GenerateCdfFile(string cardImagePath, string editionId, CardRecord record)
     {
         string filenameNoExtension = Path.GetFileNameWithoutExtension(cardImagePath);
 
-        // Extract category and description from the filename
-        ExtractCategoryAndDescription(filenameNoExtension, out string category, out string description);
-
         // If category is not provided, set it to "Uncategorized"
-        if (string.IsNullOrEmpty(category))
+        if (string.IsNullOrEmpty(record.Category))
         {
-            category = "Uncategorized";
+            record.Category = "Uncategorized";
         }
 
         // If description is not provided, set it to an empty string
-        if (string.IsNullOrEmpty(description))
+        if (string.IsNullOrEmpty(record.Description))
         {
-            description = "";
+            record.Description = "";
         }
 
         // Form the illustration path
         string illustrationPath = $"{editionId}/{filenameNoExtension}";
 
-        // Get the rarity level
-        string rarity = GetRarityFromFilename(Path.GetFileName(cardImagePath));
-
         // Get the drop weight
-        int dropWeight = GetDropWeight(rarity);
+        int dropWeight = GetDropWeight(record.Rarity);
 
         // Form the updated CDF data
         string cdfData = $"EditionID={editionId}" +
                          $"\nCardID={GenerateCardId(filenameNoExtension)}" +
-                         $"\nRarityLevel={rarity}" +
+                         $"\nRarityLevel={record.Rarity}" +
                          $"\nName={GenerateCardName(filenameNoExtension)}" +
-                         $"\nCategory={category}" +
+                         $"\nCategory={record.Category}" +
                          $"\nDropWeight={dropWeight}" +
-                         $"\nDescription={description}" +
+                         $"\nDescription={record.Description}" +
                          $"\nIllustrationPath={illustrationPath}";
 
         // Overwrite the existing CDF file with the updated content
@@ -119,25 +122,6 @@ class Program
         return imageName;
     }
 
-    static string GetRarityFromFilename(string filename)
-    {
-        string rarity = "";
-
-        Regex regex = new Regex("_(com|common|unc|uncommon|rare|anc|ancient|leg|legendary).png$", RegexOptions.IgnoreCase);
-        Match match = regex.Match(filename);
-
-        if (match.Success)
-        {
-            rarity = match.Groups[1].Value.ToLower();
-        }
-        else
-        {
-            rarity = "common";
-        }
-
-        return rarity;
-    }
-
     static int GetDropWeight(string rarity)
     {
         int weight = 0;
@@ -176,27 +160,28 @@ class Program
         return weight;
     }
 
-    static void ExtractCategoryAndDescription(string filename, out string category, out string description)
+    // Define a class to hold the CSV records
+    public class CardRecord
     {
-        category = "";
-        description = "";
+        [Name("filename")]
+        public string Filename { get; set; }
 
-        // Category
-        Regex categoryRegex = new Regex(@"\((.*?)\)");
-        Match categoryMatch = categoryRegex.Match(filename);
-        if (categoryMatch.Success)
-        {
-            category = categoryMatch.Groups[1].Value;
-            category = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(category);
-        }
+        [Name("category")]
+        public string Category { get; set; }
 
-        // Description
-        Regex descRegex = new Regex(@"\[(.*?)\]");
-        Match descMatch = descRegex.Match(filename);
-        if (descMatch.Success)
+        [Name("description")]
+        public string Description { get; set; }
+
+        [Name("rarity")]
+        public string Rarity { get; set; }
+    }
+
+    static List<CardRecord> ReadCardsFromCsv(string csvFilePath)
+    {
+        using (var reader = new StreamReader(csvFilePath))
+        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
-            description = descMatch.Groups[1].Value;
-            description = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(description);
+            return csv.GetRecords<CardRecord>().ToList();
         }
     }
 }
