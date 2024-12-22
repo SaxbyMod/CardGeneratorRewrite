@@ -32,7 +32,7 @@ class Program
         // Generate CDFs
         foreach (var record in records)
         {
-            string cardImagePath = Path.Combine(assetsDir, $"{record.Filename}.png");
+            string cardImagePath = Path.Combine(assetsDir, $"{record.Filename.Replace(' ', '_')}.png");
             GenerateCdfFile(cardImagePath, editionId, record);
         }
 
