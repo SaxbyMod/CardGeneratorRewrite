@@ -12,9 +12,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F58208E9-D1A6-4065-A79D-0666E63E1399}|CardGeneratorRewrite\\CardGeneratorRewrite.csproj|C:\\Users\\Thinc\\Documents\\GitHub\\CardGeneratorRewrite\\cardgeneratorrewrite\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F58208E9-D1A6-4065-A79D-0666E63E1399}|CardGeneratorRewrite\\CardGeneratorRewrite.csproj|solutionrelative:cardgeneratorrewrite\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F58208E9-D1A6-4065-A79D-0666E63E1399}|CardGeneratorRewrite\\CardGeneratorRewrite.csproj|c:\\users\\thinc\\documents\\github\\cardgeneratorrewrite\\cardgeneratorrewrite\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|a54ad834-9219-4aa6-b589-607af21c3e26"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +43,7 @@
               "RelativeDocumentMoniker": "CardGeneratorRewrite\\Program.cs",
               "ToolTip": "C:\\Users\\Thinc\\Documents\\GitHub\\CardGeneratorRewrite\\CardGeneratorRewrite\\Program.cs",
               "RelativeToolTip": "CardGeneratorRewrite\\Program.cs",
-              "ViewState": "AgIAAKUAAAAAAAAAAAAAACIAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAiwCwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-28T22:16:17.4Z",
               "EditorCaption": ""
@@ -60,8 +57,7 @@
               "ToolTip": "C:\\Users\\Thinc\\Documents\\GitHub\\CardGeneratorRewrite\\CardGeneratorRewrite\\CardGeneratorRewrite.csproj",
               "RelativeToolTip": "CardGeneratorRewrite\\CardGeneratorRewrite.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-04-28T22:15:29.049Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-28T22:15:29.049Z"
             },
             {
               "$type": "Document",
@@ -73,8 +69,7 @@
               "RelativeToolTip": "CardGeneratorRewrite\\Properties\\AssemblyInfo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-12-31T15:25:49.448Z",
-              "EditorCaption": ""
+              "WhenOpened": "2023-12-31T15:25:49.448Z"
             }
           ]
         }

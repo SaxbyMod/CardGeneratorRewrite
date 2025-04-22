@@ -32,8 +32,15 @@ class Program
         // Generate CDFs
         foreach (var record in records)
         {
-            string cardImagePath = Path.Combine(assetsDir, $"{record.Filename.Replace(' ', '_')}.png");
-            GenerateCdfFile(cardImagePath, editionId, record);
+            string cardImagePath = Path.Combine(assetsDir, $"{record.Filename.Replace(' ', '_').ToLower()}.png");
+            if (Regex.IsMatch(cardImagePath, @"^[a-z0-9/._-]+\.png$"))
+            {
+                GenerateCdfFile(cardImagePath, editionId, record);
+            }
+            else
+            {
+                Console.WriteLine($"{cardImagePath} does not match required Regex");
+            }
         }
 
         // Inform the user that CDF files have been generated
@@ -67,9 +74,9 @@ class Program
 
         // Form the updated CDF data
         string cdfData = $"EditionID={editionId}" +
-                         $"\nCardID={GenerateCardId(filenameNoExtension)}" +
+                         $"\nCardID={GenerateCardId(filenameNoExtension.Replace("___", ")").Replace("__", " ("))}" +
                          $"\nRarityLevel={record.Rarity}" +
-                         $"\nName={GenerateCardName(filenameNoExtension)}" +
+                         $"\nName={GenerateCardName(filenameNoExtension.Replace("___", ")").Replace("__", " ("))}" +
                          $"\nCategory={record.Category}" +
                          $"\nDropWeight={dropWeight}" +
                          $"\nDescription={record.Description}" +
@@ -87,9 +94,6 @@ class Program
 
         // Remove the file extension
         cardId = Path.GetFileNameWithoutExtension(cardId);
-
-        // Remove anything in parentheses or square brackets from cardId
-        cardId = Regex.Replace(cardId, @"\([^\)]*\)|\[[^\]]*\]", "");
 
         // Remove rarity suffix from cardId
         cardId = Regex.Replace(cardId, @"_(com|common|unc|uncommon|rare|anc|ancient|leg|legendary)$", "");
@@ -112,9 +116,6 @@ class Program
 
         // Replace underscores with spaces
         imageName = imageName.Replace('_', ' ');
-
-        // Remove anything in parentheses or square brackets from imageName
-        imageName = Regex.Replace(imageName, @"\([^\)]*\)|\[[^\]]*\]", "");
 
         // Capitalize each word in imageName
         imageName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(imageName);
