@@ -1,27 +1,21 @@
-## How to Use and Install Guide for the Script:
+Requires ~Net 9 and perhaps a bit more!
 
-### Step 1: Installation
-1. Download or clone the script from the provided source.
-2. Ensure you have a C# compatible environment, such as Visual Studio or a compatible IDE installed on your system.
+Place all the card info in a `cards.csv` file setup in the following format;
 
-### Step 2: Setup
-1. Once you have the script downloaded, navigate to the directory containing the script files.
-2. Make sure you have the necessary assets, particularly the `cards.csv` file and card images, organized in the correct structure:
-   - The `cards.csv` file containing card data should be placed in the same directory as the script.
-   - Card images should be placed in a directory named according to the edition ID inside the `assets` directory. For example, if the edition ID is "example_edition", place card images in the directory `assets/example_edition`.
+```csv
+filename,category,description,rarity
+akebono,Space Rare,A Space piolet traveling through out space,Common
+```
 
-### Step 3: Execution
-1. Open the script file (`Program.cs`) in your preferred C# development environment.
-2. Build the project to ensure all dependencies are resolved.
-3. Run the script by executing the program.
+filename = name of the card&png
+category = Category the card is apart of
+description = Describe your card and it will be displayed on the gui of the card for lore purposes.
+rarity = How rare is the card going to be?
 
-### Step 4: Input
-1. When prompted, enter the `edition_id` as requested by the script.
+Afterward, place the contents of this zip file in `mtc/cards/[edition-id]/` than run the script, your edition name should be what your editions subfolders are labeled as.
 
-### Step 5: Output
-1. The script will generate CDF files for cards based on the provided CSV data and card images.
-2. The generated CDF files will be placed in the same directory as the script.
+If you encounter any errors send a dm to `@thincreator3483` on discord.
 
-### Step 6: Conclusion
-1. Once the script has completed execution, you will see a message indicating that CDF files have been generated successfully.
-2. You can now use the generated CDF files as required.
+![216f13_f9dde0008f314252b90037f18995cdebmv2](https://github.com/SaxbyMod/CardGeneratorRewrite/assets/102002463/5a71330b-ffc1-4ae3-8ca9-e53484d2e43b)
+
+Happy cardsmithing!!
